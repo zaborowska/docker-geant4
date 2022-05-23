@@ -6,33 +6,37 @@ ARG G4_VERSION=11.0.1
 
 WORKDIR /workspace
 
-RUN echo "G4 VERSION: ${G4_VERSION}"
-
 ENV LANG=C.UTF-8
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get -yq --no-install-recommends install \ 
-    gnupg2 \
-    software-properties-common
+#    gnupg2 \
+#    software-properties-common
+     ca-certificates \
+     dirmngr \
+     gpg \
+     wget 
     
-COPY packages packages
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
-    | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
-    add-apt-repository ppa:git-core/ppa && \
-    apt-get update && \
+    | gpg --dearmor - |  tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && \
+    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] \
+    https://apt.kitware.com/ubuntu/ focal main' \
+    |  tee /etc/apt/sources.list.d/kitware.list >/dev/null 
+
+COPY packages packages
+RUN apt-get update && \
     apt-get -yq --no-install-recommends install \
-    $(cat packages) && \
+    $(cat packages) \
+    && \
     apt-get clean && \
     rm -rf /var/cache/apt/archives/* && \
     rm -rf /var/lib/apt/lists/*
 
-RUN tmp="$(gcc -v)" && echo $tmp
-
 RUN mkdir -p /workspace/geant4/build && \
     mkdir -p /opt/geant4/ && \
-    wget --quiet --no-check-certificate -O /workspace/geant4.tar.gz \
+    wget --quiet -O /workspace/geant4.tar.gz \
     https://geant4-data.web.cern.ch/geant4-data/releases/source/geant4-v${G4_VERSION}.tar.gz && \
     tar xf /workspace/geant4.tar.gz -C /workspace/geant4/ && \
     mv /workspace/geant4/geant4-v${G4_VERSION}/ /workspace/geant4/src/ && \
@@ -58,13 +62,20 @@ RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get -yq --no-install-recommends install \ 
-    gnupg2 \
-    software-properties-common    
-
+#    gnupg2 \
+#    software-properties-common
+     ca-certificates \
+     dirmngr \
+     gpg \
+     wget 
+     
 COPY packages packages
 RUN export DEBIAN_FRONTEND=noninteractive && \
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
-    add-apt-repository ppa:git-core/ppa && \    
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
+    | gpg --dearmor - |  tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && \
+    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] \
+    https://apt.kitware.com/ubuntu/ focal main' \
+    |  tee /etc/apt/sources.list.d/kitware.list >/dev/null && \
     apt-get update && \
     apt-get -yq --no-install-recommends install \    
     $(cat packages) \
