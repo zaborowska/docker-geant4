@@ -2,7 +2,7 @@ ARG BASE_IMAGE=ubuntu:focal
 
 FROM $BASE_IMAGE AS builder
 
-ARG G4_VERSION=11.0.1
+ARG G4_VERSION=11.0.2
 
 WORKDIR /workspace
 
