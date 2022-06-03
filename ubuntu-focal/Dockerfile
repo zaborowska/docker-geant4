@@ -79,16 +79,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get -yq --no-install-recommends install \    
     $(cat packages) \
-    cmake-curses-gui \
-    git \
-    zip \
-    unzip \
-    curl \
-    openssl \
-    less \
-    emacs-nox \
-    grep \
-    sed \
     && \
     apt-get clean && \
     rm -rf /var/cache/apt/archives/* && \
@@ -97,7 +87,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 #RUN git clone --branch stable https://github.com/nojhan/liquidprompt.git /opt/liquidprompt
 
 COPY --from=builder /opt/geant4/ /opt/geant4/
-COPY --from=builder /workspace/geant4/src/examples/ /opt/geant4/examples/
+#COPY --from=builder /workspace/geant4/src/examples/ /opt/geant4/examples/
 
 RUN mkdir -p /opt/geant4/data && chmod 777 /opt/geant4/data
 

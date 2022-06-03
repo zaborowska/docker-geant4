@@ -20,8 +20,6 @@ The image will check the datasets at login, if some are missing install them wit
 
 ### Geant4 examples
 
-The Geant4 examples are in the
+To save space, Geant4 examples have been removed, to download them:
 
-`/opt/geant4/examples/`
-
-folder inside the container.
+`wget https://gitlab.cern.ch/geant4/geant4/-/archive/master/geant4-master.tar.gz?path=examples && tar xf geant4-examples.tar.gz`
