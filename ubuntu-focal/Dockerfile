@@ -67,7 +67,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
      ca-certificates \
      dirmngr \
      gpg \
-     wget  \
+     wget 
      
 COPY packages packages
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -93,4 +93,4 @@ RUN mkdir -p /opt/geant4/data && chmod 777 /opt/geant4/data
 
 COPY bashrc /etc/profile.d/custom.sh
 
-ENTRYPOINT  ["/usr/bin/bash", "-l"]
+ENTRYPOINT  ["/usr/bin/bash", "-l", "-c"]
