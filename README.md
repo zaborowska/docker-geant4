@@ -22,4 +22,4 @@ The image will check the datasets at login, if some are missing install them wit
 
 To save space, Geant4 examples have been removed, to download them:
 
-`wget https://gitlab.cern.ch/geant4/geant4/-/archive/master/geant4-master.tar.gz?path=examples && tar xf geant4-examples.tar.gz`
+`wget https://gitlab.cern.ch/geant4/geant4/-/archive/master/geant4-master.tar.gz?path=examples -O examples.tar.gz && tar xf examples.tar.gz --strip-components 1`

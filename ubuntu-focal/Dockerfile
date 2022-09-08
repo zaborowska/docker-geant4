@@ -67,7 +67,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
      ca-certificates \
      dirmngr \
      gpg \
-     wget 
+     wget  \
      
 COPY packages packages
 RUN export DEBIAN_FRONTEND=noninteractive && \
