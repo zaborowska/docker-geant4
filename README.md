@@ -12,7 +12,7 @@ To keep the size of the Docker images limited, the Geant4 datasets are not insta
 `/opt/geant4/data`
 I suggest you to map a folder in the host to use always the same dataset with the option:
 
-`--volume="<GEANT4_DATASETS_PATH>:/opt/geant4/data`
+`--volume="<GEANT4_DATASETS_PATH>:/opt/geant4/data:ro`
 
 The image will check the datasets at login, if some are missing install them with:
 

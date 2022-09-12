@@ -30,7 +30,7 @@ echo "## checking Geant4 datasets ##############################################
 echo ""
 echo "this container expects to find Geant4 datasets in /opt/geant4/data"
 echo "it is suggested to mount a folder from the host with the datasets:"
-echo "--volume=\"SOME_PATH/geant4-data:/opt/geant4/data\" "
+echo "--volume=\"SOME_PATH/geant4-data:/opt/geant4/data:ro\" "
 echo "otherwise, it is possible to install them with:"
 echo "geant4-config --install-datasets"
 echo "###########################################################################"
