@@ -11,7 +11,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get -yq --no-install-recommends install \
-    git
+    git \
+    && \
+    apt-get -y autoremove && \
+    apt-get -y clean && \
+    rm -rf /var/cache/apt/archives/* && \
+    rm -rf /var/lib/apt/lists/*    
 
 RUN cd /workspace && \
     git clone https://github.com/DCMTK/dcmtk.git && \

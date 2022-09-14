@@ -30,7 +30,8 @@ RUN apt-get update && \
     apt-get -yq --no-install-recommends install \
     $(cat packages) \
     && \
-    apt-get clean && \
+    apt-get -y autoremove && \
+    apt-get -y clean && \
     rm -rf /var/cache/apt/archives/* && \
     rm -rf /var/lib/apt/lists/*
 
@@ -80,7 +81,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -yq --no-install-recommends install \    
     $(cat packages) \
     && \
-    apt-get clean && \
+    apt-get -y autoremove && \
+    apt-get -y clean && \    
     rm -rf /var/cache/apt/archives/* && \
     rm -rf /var/lib/apt/lists/*
 
