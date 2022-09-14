@@ -1,8 +1,10 @@
 ARG BASE_IMAGE=ubuntu:focal
+ARG G4_VERSION=11.0.2
 
 FROM $BASE_IMAGE AS builder
 
-ARG G4_VERSION=11.0.2
+LABEL maintainer.name="Carlo Mancini Terracciano"
+LABEL maintainer.email="carlo.mancini.terracciano@roma1.infn.it"
 
 WORKDIR /workspace
 
