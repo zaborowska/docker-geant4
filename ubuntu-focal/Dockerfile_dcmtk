@@ -2,6 +2,9 @@ ARG BASE_IMAGE=carlomt/geant4
 
 FROM $BASE_IMAGE AS builder
 
+LABEL maintainer.name="Carlo Mancini Terracciano"
+LABEL maintainer.email="carlo.mancini.terracciano@roma1.infn.it"
+
 WORKDIR /workspace
 
 ENV LANG=C.UTF-8
