@@ -1,10 +1,16 @@
 ARG BASE_IMAGE=ubuntu:focal
+FROM $BASE_IMAGE AS builder
+LABEL maintainer="carlo.mancini.terracciano@roma1.infn.it"
+
 ARG G4_VERSION=11.0.2
 
-FROM $BASE_IMAGE AS builder
-
-LABEL maintainer.name="Carlo Mancini Terracciano"
-LABEL maintainer.email="carlo.mancini.terracciano@roma1.infn.it"
+#labels
+LABEL org.label-schema.geant4-version=$G4_VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.name="carlomt/geant4"
+LABEL org.label-schema.description="Geant4 Docker image"
+LABEL org.label-schema.url="https://github.com/carlomt/docker-geant4"
+LABEL org.label-schema.docker.cmd="docker build -t carlomt/geant4:latest --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --no-cache=true ."
 
 WORKDIR /workspace
 
@@ -19,8 +25,8 @@ RUN apt-get update && \
      ca-certificates \
      dirmngr \
      gpg \
-     wget 
-    
+     wget
+
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
     | gpg --dearmor - |  tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && \
     echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] \
