@@ -1,9 +1,11 @@
 ARG BASE_IMAGE=carlomt/geant4
-
 FROM $BASE_IMAGE AS builder
+LABEL maintainer="carlo.mancini.terracciano@roma1.infn.it"
 
-LABEL maintainer.name="Carlo Mancini Terracciano"
-LABEL maintainer.email="carlo.mancini.terracciano@roma1.infn.it"
+#labels
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.description="Geant4 Docker image with DCMTK"
+LABEL org.label-schema.url="https://github.com/carlomt/docker-geant4"
 
 WORKDIR /workspace
 
