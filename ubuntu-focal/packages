@@ -1,4 +1,3 @@
-g++
 make
 ninja-build
 pkg-config

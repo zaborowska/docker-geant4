@@ -36,7 +36,7 @@ RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/nul
 COPY packages packages
 RUN apt-get update && \
     apt-get -yq --no-install-recommends install \
-    g++ \
+    clang \
     $(cat packages) \
     && \
     apt-get -y autoremove && \
@@ -52,6 +52,8 @@ RUN mkdir -p /workspace/geant4/build && \
     mv /workspace/geant4/geant4-v${G4_VERSION}/ /workspace/geant4/src/ && \
     cd /workspace/geant4/build && \
     cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/opt/geant4 \
+    -DCMAKE_C_COMPILER=/usr/bin/clang \
+    -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
     -DGEANT4_INSTALL_DATA=OFF \
     -DGEANT4_INSTALL_DATADIR=/opt/geant4/data \
     -DGEANT4_BUILD_MULTITHREADED=ON \
@@ -88,7 +90,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     |  tee /etc/apt/sources.list.d/kitware.list >/dev/null && \
     apt-get update && \
     apt-get -yq --no-install-recommends install \
-    g++ \
+    clang \
     $(cat packages) \
     && \
     apt-get -y autoremove && \
