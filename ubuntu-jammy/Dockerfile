@@ -58,6 +58,12 @@ RUN mkdir -p /workspace/geant4/build && \
 
 RUN rm packages
 
+RUN git clone https://gitlab.cern.ch/azaborow/geant4tutorialapplication.git \
+    && mkdir geant4tutorialapplication/build \
+    && cmake -B geant4tutorialapplication/build -S geant4tutorialapplication \
+    && cmake --build geant4tutorialapplication/build \
+    && ls geant4tutorialapplication/build
+
 COPY bashrc /etc/profile.d/custom.sh
 
 ENTRYPOINT  ["/usr/bin/bash", "-l", "-c"]
