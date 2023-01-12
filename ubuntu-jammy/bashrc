@@ -12,6 +12,9 @@ alias ll='ls -ltrh'
 # Geant4
 source  /opt/geant4/bin/geant4.sh
 
+# to allow GUI applications
+xauth add $XAUTHADD
+
 echo ""
 echo "## gcc version ############################################################"
 gcc --version
