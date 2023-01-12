@@ -1,6 +1,0 @@
-make
-ninja-build
-pkg-config
-libxerces-c-dev
-libexpat1-dev
-cmake

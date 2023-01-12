@@ -1,0 +1,8 @@
+make
+ninja-build
+pkg-config
+libxerces-c-dev
+libexpat1-dev
+cmake
+qtbase5-dev
+mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev libglfw3-dev libglew-dev libglm-dev  libao-dev libmpg123-dev
