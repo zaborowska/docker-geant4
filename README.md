@@ -9,7 +9,7 @@ NOT YET, WILL BE DONE SOON
 
 Then run the docker container in a way that allows GUI:
 
-`docker run -e XAUTHADD="`xauth list`" --net=host -e DISPLAY -v /tmp/.X11-unix  --name geant4 -it zaborowska/geant4 bash`
+`docker run --rm -e XAUTHADD="`xauth list`" --net=host -e DISPLAY -v /tmp/.X11-unix  --name geant4 -it zaborowska/geant4 bash`
 
 ### Geant4 examples
 
