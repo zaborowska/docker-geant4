@@ -4,7 +4,6 @@
 
 you can download this container with:
 
-NOT YET, WILL BE DONE SOON
 `docker pull zaborowska/geant4`
 
 Then run the docker container in a way that allows GUI:
